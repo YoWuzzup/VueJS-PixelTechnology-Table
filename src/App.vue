@@ -2,28 +2,14 @@
   <div id="app">
     <h1 class="h1">Patients Table for Pixel Technology</h1>
 
-    <div class="mainForm forms">
-      <label for="filter" class="mainForm_label label">Choose a filter:</label>
+    <!-- v-on:EVENTNAME, eventname is in the child -->
+    <Forms
+      v-on:changeFilter="updateFilter($event)"
+      v-on:changingData="updateChosenData($event)"
+      v-on:submittingData="submitForm($event)"
+    />
 
-      <select id="filter" v-model="filter" class="mainForm_select">
-        <option value="all" class="mainForm_option">All patients</option>
-        <option value="over30" class="mainForm_option">
-          Patients over 30 with medicine
-        </option>
-        <option value="lower60" class="mainForm_option">
-          Patients lower 60 with medicine and strength
-        </option>
-      </select>
-    </div>
-
-    <div class="sideForm_wrapper forms">
-      <form class="sideForm">
-        <label for="age" class="sideForm_ageLabel label">Choose age:</label>
-        <input class="sideForm_age input" />
-      </form>
-    </div>
-
-    <!-- v-bind is for sending data, like props in react  -->
+    <!-- v-bind is for sending data, props in react  -->
     <Table v-bind:patients="filtering" v-bind:medicine="medicine" />
   </div>
 </template>
@@ -31,6 +17,7 @@
 <script>
 import { fetchPatients, fetchMedicine } from "@/api/index";
 import Table from "@/components/Table";
+import Forms from "@/components/Forms";
 
 export default {
   name: "App",
@@ -40,7 +27,23 @@ export default {
       patients: [],
       medicine: [],
       filter: "all",
+      chosen: {
+        chosenAge: null,
+      },
     };
+  },
+  methods: {
+    updateFilter: function (value) {
+      this.filter = value;
+    },
+    updateChosenData: function (data) {
+      this.chosen[data.name] = data.value;
+    },
+    submitForm: function () {
+      fetchPatients(this.chosen).then((response) => {
+        this.patients = response.data;
+      });
+    },
   },
   computed: {
     filtering() {
@@ -51,7 +54,6 @@ export default {
       if (this.filter === "lower60") {
         return this.patients.filter((p) => p.age < 60);
       }
-
       return this.patients;
     },
   },
@@ -59,7 +61,7 @@ export default {
   // analogue of react's componentDidMount
   mounted() {
     // fetching patients
-    fetchPatients().then((response) => {
+    fetchPatients(this.chosen).then((response) => {
       this.patients = response.data;
     });
     // fetching medicine
@@ -70,6 +72,7 @@ export default {
   // have to import ^, and register the components here
   components: {
     Table,
+    Forms,
   },
 
   // this watches for a variable changes, in this case 'filter'
@@ -103,30 +106,5 @@ export default {
 .h1 {
   flex-basis: 100%;
   margin: 60px auto 30px;
-}
-
-.forms {
-  flex-basis: 35%;
-  display: flex;
-  align-content: center;
-  align-items: center;
-  flex-flow: row wrap;
-}
-
-.mainForm {
-  justify-content: flex-start;
-}
-
-.label {
-  margin-right: 20px;
-}
-
-.sideForm_wrapper {
-  justify-content: flex-end;
-}
-
-.mainForm_select {
-  border: none;
-  outline: none;
 }
 </style>

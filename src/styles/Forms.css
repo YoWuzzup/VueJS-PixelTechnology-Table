@@ -1,0 +1,57 @@
+.wrapper {
+  width: 80%;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 auto 30px;
+}
+
+.forms {
+  flex-basis: 45%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  margin-bottom: 20px;
+}
+
+.mainForm {
+  justify-content: flex-start;
+}
+
+.label {
+  margin-right: 20px;
+}
+
+.sideForm_label {
+  flex-basis: 100%;
+  margin: 0 0 5px;
+  text-align: left;
+}
+
+.sideForm_wrapper {
+  flex-flow: column nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.sideForm {
+  width: 50%;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.input {
+  flex-basis: 100%;
+  margin: 0 0 1rem;
+  outline: none;
+}
+
+.mainForm_select {
+  border: none;
+  outline: none;
+  width: 300px;
+}

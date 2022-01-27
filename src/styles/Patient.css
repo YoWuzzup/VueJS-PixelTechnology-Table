@@ -1,0 +1,52 @@
+.patient_wrapper {
+  flex-basis: 23%;
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column;
+  margin: 0 auto 30px;
+  text-align: left;
+  border: 1px solid #fff;
+  border-radius: 50px;
+  transition: all 0.5s ease-in;
+}
+
+.info {
+  font-size: 18px;
+  justify-content: flex-start;
+  margin: 0 15px 10px 15px;
+  min-width: 250px;
+}
+
+.info:last-child {
+  margin-bottom: 25px;
+}
+
+.patient_name {
+  transition: all 0.5s ease-in;
+  font-size: 24px;
+  align-self: center;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.patient_phoneNumber > * {
+  color: #fff;
+  text-decoration: none;
+}
+
+.patient_medicine_block {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+}
+.patient_medicine {
+  align-self: center;
+}
+
+.patient_wrapper:hover {
+  border: 1px solid rgb(20, 221, 187);
+}
+
+.patient_wrapper:hover .patient_name {
+  color: rgb(20, 221, 187);
+}

@@ -3,10 +3,10 @@ import axios from "axios";
 export const fetchPatients = async (data) => {
   try {
     let query;
+    let age = data.chosenAge || null;
 
     if (data) {
-      let newData = data.includes(" ") ? data.split(" ").join("") : data;
-      query = `?${newData}`;
+      query = `?${age ? "age=" + age : ""}`;
     } else {
       query = "";
     }

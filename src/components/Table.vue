@@ -23,35 +23,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.table_wrapper {
-  width: 80%;
-  margin: 0 auto 0;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-}
-
-.table_list {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  padding: 2rem 0 0;
-  margin: 0;
-  width: 100%;
-}
-
-@media (max-width: 1250px) {
-  .table_wrapper {
-    width: 100%;
-  }
-}
-
-
-@media (max-width: 800px) {
-  .table_list {
-    width: 100%;
-  }
-}
-</style>
+<style scoped src="@/styles/Table.css"></style>
