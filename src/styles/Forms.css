@@ -35,7 +35,7 @@
   flex-flow: column nowrap;
   align-content: center;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
 }
 
 .sideForm {
@@ -54,4 +54,10 @@
   border: none;
   outline: none;
   width: 300px;
+}
+
+@media (max-width: 695px) {
+  .sideForm_wrapper {
+    align-items: stretch;
+  }
 }
